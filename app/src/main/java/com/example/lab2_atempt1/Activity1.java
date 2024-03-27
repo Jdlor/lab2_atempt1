@@ -21,7 +21,7 @@ public class Activity1 extends AppCompatActivity {
     }
     public void bckButton1(View view){
         Intent intent = new Intent(Activity1.this,MainActivity.class);
-        MainActivity.data=binding.textView.toString();
+        intent.putExtra("data",binding.editText.getText().toString());
         startActivity(intent);
 
     }

@@ -8,9 +8,10 @@ import android.view.View;
 
 import com.example.lab2_atempt1.databinding.Activity1Binding;
 import com.example.lab2_atempt1.databinding.Activity2Binding;
-
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 public class Activity2 extends AppCompatActivity {
-    public static String data = "";
+
     private Activity2Binding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +19,12 @@ public class Activity2 extends AppCompatActivity {
         binding = Activity2Binding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        binding.textView3.setText(data);
+        EventBus.getDefault().register(this);
         binding.button6.setOnClickListener(this::bckButton2);
+    }
+    @Subscribe
+        public void doThis(Bus bus){
+        binding.textView3.setText(bus.text);
     }
     public void bckButton2(View view){
         Intent intent = new Intent(Activity2.this,MainActivity.class);

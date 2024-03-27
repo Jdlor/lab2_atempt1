@@ -33,6 +33,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editText"
         android:layout_width="323dp"
         android:layout_height="67dp"
         android:hint="hint"
