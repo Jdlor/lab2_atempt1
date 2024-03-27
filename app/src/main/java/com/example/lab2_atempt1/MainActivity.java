@@ -9,7 +9,7 @@ import android.content.Intent;
 import com.example.lab2_atempt1.databinding.ActivityMainBinding;
 
 
-public class MainActivity extends AppCompatActivity implements CallBackInterface {
+public class MainActivity extends AppCompatActivity implements InnerInterface.Interface {
     public static String data = "";
     private ActivityMainBinding binding;
 
@@ -24,15 +24,14 @@ public class MainActivity extends AppCompatActivity implements CallBackInterface
 
 
     }
-
-    public void activButton1(){
-        binding.textView4.setText("S");
+    @Override
+    public void activButton1(View v){
         Intent intent = new Intent(MainActivity.this,Activity1.class);
         // start the activity connect to the specified class
         startActivity(intent);
     }
-
-    public void activButton2(){
+    @Override
+    public void activButton2(View v){
         Intent intent = new Intent(MainActivity.this,Activity2.class);
         Activity2.data=data;
         startActivity(intent);

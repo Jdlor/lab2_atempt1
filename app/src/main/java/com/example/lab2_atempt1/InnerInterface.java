@@ -3,6 +3,8 @@ package com.example.lab2_atempt1;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -16,31 +18,40 @@ import com.example.lab2_atempt1.databinding.FragmentInnerInterfaceBinding;
 
 
 public class InnerInterface extends Fragment {
-    CallBackInterface callBackInterface;
+    private Interface callback;
+    public interface Interface
+    {
+        void activButton1(View view);
+        void activButton2(View view);
+
+    }
+
     private FragmentInnerInterfaceBinding binding;
     @Override
-    public void onAttach(Context context){
-        super.onAttach(context);
-        callBackInterface = (CallBackInterface) context;
+    public void onAttach(@NonNull Context Context) {
+        super.onAttach(Context);
+        try {
+            callback = (Interface) Context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException("err");
+        }
     }
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         binding = FragmentInnerInterfaceBinding.inflate(getLayoutInflater());
-binding.button41.setOnClickListener(this::Button1);
+        View v = binding.getRoot();
+        binding.button41.setOnClickListener(this::Button1);
         binding.button42.setOnClickListener(this::Button2);
-        return inflater.inflate(R.layout.fragment_inner_interface, container, false);
+        return v;
     }
 
-    public void setCallBackInterface(CallBackInterface callBackInterface){
-        this.callBackInterface = callBackInterface;
-    }
+
 
     public void Button1(View view){
-        callBackInterface.activButton1();
+        callback.activButton1(view);
     }
     public void Button2(View view){
-        callBackInterface.activButton2();
+        callback.activButton2(view);
     }
 
 
