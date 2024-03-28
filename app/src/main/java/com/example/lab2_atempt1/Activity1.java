@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.example.lab2_atempt1.databinding.Activity1Binding;
 
+import java.util.Date;
+
 public class Activity1 extends AppCompatActivity {
     private Activity1Binding binding;
 
@@ -17,6 +19,11 @@ public class Activity1 extends AppCompatActivity {
         binding = Activity1Binding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Date dt = new Date(extras.getLong("time"));
+            binding.textView.setText(dt.toString());
+        }
         binding.button5.setOnClickListener(this::bckButton1);
     }
     public void bckButton1(View view){

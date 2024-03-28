@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.example.lab2_atempt1.databinding.ActivityMainBinding;
 
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements InnerInterface.In
     @Override
     public void activButton1(View v){
         Intent intent = new Intent(MainActivity.this,Activity1.class);
-        // start the activity connect to the specified class
+        long dtMili = System.currentTimeMillis();
+
+        intent.putExtra("time",dtMili);
         startActivity(intent);
     }
     @Override
